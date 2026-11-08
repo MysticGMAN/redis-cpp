@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Create build directory",
+            "type": "process",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "${workspaceFolder}/build"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Redis (Debug)",
+            "type": "process",
+            "command": "g++",
+            "args": [
+                "-std=c++23",
+                "-g",
+                "-O0",
+                "${workspaceFolder}/src/main.cpp",
+                "-o",
+                "${workspaceFolder}/build/redis-debug"
+            ],
+            "dependsOn": "Create build directory",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build Redis (Run)",
+            "type": "process",
+            "command": "g++",
+            "args": [
+                "-std=c++23",
+                "-O2",
+                "${workspaceFolder}/src/main.cpp",
+                "-o",
+                "${workspaceFolder}/build/redis-run"
+            ],
+            "dependsOn": "Create build directory",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ]
+}
